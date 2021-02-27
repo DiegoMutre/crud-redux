@@ -1,4 +1,24 @@
+import { useDispatch } from "react-redux";
+import { createNewProductAction } from "../actions/productsActions";
+
 const NewProduct = () => {
+    // *  To be able to execute the actions
+    const dispatch = useDispatch();
+
+    // *! Can't use the action directly, you have to use the dispatch
+    const addProduct = () => {
+        dispatch(createNewProductAction());
+    };
+
+    const handleSubmit = e => {
+        e.preventDefault();
+
+        // *TODO: Validate
+
+        // *TODO: Create new product
+        addProduct();
+    };
+
     return (
         <div className="row justify-content-center">
             <div className="col-md-8">
@@ -7,7 +27,7 @@ const NewProduct = () => {
                         <h2 className="text-center-mb-4 font-weight-bold">
                             Add New Product
                         </h2>
-                        <form>
+                        <form onSubmit={handleSubmit}>
                             <div className="form-group">
                                 <label>Product Name</label>
                                 <input
