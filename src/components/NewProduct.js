@@ -1,22 +1,25 @@
+import { useState } from "react";
 import { useDispatch } from "react-redux";
 import { createNewProductAction } from "../actions/productsActions";
 
 const NewProduct = () => {
+    const [name, setName] = useState("");
+    const [price, setPrice] = useState(0);
+
     // *  To be able to execute the actions
     const dispatch = useDispatch();
 
     // *! Can't use the action directly, you have to use the dispatch
-    const addProduct = () => {
-        dispatch(createNewProductAction());
-    };
+    const addProduct = product => dispatch(createNewProductAction(product));
 
     const handleSubmit = e => {
         e.preventDefault();
 
-        // *TODO: Validate
+        if (name.trim() === "" || price <= 0) {
+            return;
+        }
 
-        // *TODO: Create new product
-        addProduct();
+        addProduct({ name, price });
     };
 
     return (
@@ -35,6 +38,7 @@ const NewProduct = () => {
                                     className="form-control"
                                     placeholder="Product Name"
                                     name="name"
+                                    onChange={e => setName(e.target.value)}
                                 />
                             </div>
                             <div className="form-group">
@@ -42,8 +46,9 @@ const NewProduct = () => {
                                 <input
                                     type="number"
                                     className="form-control"
-                                    placeholder="Product Name"
+                                    placeholder="Product Price"
                                     name="price"
+                                    onChange={e => setPrice(+e.target.value)}
                                 />
                             </div>
                             <button

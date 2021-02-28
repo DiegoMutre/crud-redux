@@ -1,6 +1,6 @@
 // Create new products
-export const createNewProductAction = () => {
+export const createNewProductAction = product => {
     return () => {
-        console.log("From Action");
+        console.log(product);
     };
 };
