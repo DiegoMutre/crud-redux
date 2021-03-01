@@ -5,6 +5,8 @@ import {
     ADD_PRODUCT_ERROR,
     ADD_PRODUCT_SUCCESSFUL,
     DOWNLOAD_PRODUCTS,
+    DOWNLOAD_PRODUCTS_ERROR,
+    DOWNLOAD_PRODUCTS_SUCCESSFUL,
 } from "../types";
 
 // Create new products
@@ -34,9 +36,22 @@ export const createNewProductAction = product => async dispatch => {
     }
 };
 
-export const getProductsAction = () => dispatch => {
+export const getProductsAction = () => async dispatch => {
     dispatch({
         type: DOWNLOAD_PRODUCTS,
         payload: true,
     });
+
+    try {
+        const res = await axiosClient.get("/");
+        dispatch({
+            type: DOWNLOAD_PRODUCTS_SUCCESSFUL,
+            payload: res.data,
+        });
+    } catch (error) {
+        dispatch({
+            type: DOWNLOAD_PRODUCTS_ERROR,
+            payload: true,
+        });
+    }
 };
