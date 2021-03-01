@@ -3,6 +3,8 @@ import {
     ADD_PRODUCT_ERROR,
     ADD_PRODUCT_SUCCESSFUL,
     DOWNLOAD_PRODUCTS,
+    DOWNLOAD_PRODUCTS_ERROR,
+    DOWNLOAD_PRODUCTS_SUCCESSFUL,
 } from "../types";
 
 // Each reducer have their own state
@@ -27,10 +29,17 @@ function productsReducer(state = initialState, action) {
                 loading: false,
             };
         case ADD_PRODUCT_ERROR:
+        case DOWNLOAD_PRODUCTS_ERROR:
             return {
                 ...state,
                 loading: false,
                 error: action.payload,
+            };
+        case DOWNLOAD_PRODUCTS_SUCCESSFUL:
+            return {
+                ...state,
+                loading: false,
+                products: action.payload,
             };
         default:
             return state;
