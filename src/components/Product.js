@@ -1,10 +1,15 @@
 import PropTypes from "prop-types";
 import { useDispatch } from "react-redux";
+import { useHistory } from "react-router-dom";
 import Swal from "sweetalert2";
-import { deleteProductAction } from "../actions/productsActions";
+import {
+    deleteProductAction,
+    getProductToEditAction,
+} from "../actions/productsActions";
 
-const Product = ({ product: { id, name, price } }) => {
+const Product = ({ product, product: { id, name, price } }) => {
     const dispatch = useDispatch();
+    const history = useHistory();
 
     const handleDelete = () => {
         Swal.fire({
@@ -23,6 +28,11 @@ const Product = ({ product: { id, name, price } }) => {
         });
     };
 
+    const handleEdit = () => {
+        dispatch(getProductToEditAction(product));
+        history.push(`/products/edit/${product.id}`);
+    };
+
     return (
         <tr>
             <td>{name}</td>
@@ -30,7 +40,9 @@ const Product = ({ product: { id, name, price } }) => {
                 <span className="font-weight-bold">${price}</span>
             </td>
             <td className="acciones">
-                <button className="btn btn-primary mr-2">Edit</button>
+                <button className="btn btn-primary mr-2" onClick={handleEdit}>
+                    Edit
+                </button>
                 <button className="btn btn-danger" onClick={handleDelete}>
                     Delete
                 </button>
