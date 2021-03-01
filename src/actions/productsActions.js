@@ -4,6 +4,7 @@ import {
     ADD_PRODUCT,
     ADD_PRODUCT_ERROR,
     ADD_PRODUCT_SUCCESSFUL,
+    DOWNLOAD_PRODUCTS,
 } from "../types";
 
 // Create new products
@@ -31,4 +32,11 @@ export const createNewProductAction = product => async dispatch => {
             text: "There was a mistake, try again",
         });
     }
+};
+
+export const getProductsAction = () => dispatch => {
+    dispatch({
+        type: DOWNLOAD_PRODUCTS,
+        payload: true,
+    });
 };
