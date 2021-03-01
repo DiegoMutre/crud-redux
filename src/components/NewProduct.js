@@ -1,10 +1,13 @@
 import { useState } from "react";
-import { useDispatch } from "react-redux";
+import { useDispatch, useSelector } from "react-redux";
+import { showAlertAction } from "../actions/alertActions";
 import { createNewProductAction } from "../actions/productsActions";
 
 const NewProduct = () => {
     const [name, setName] = useState("");
     const [price, setPrice] = useState(0);
+
+    const alert = useSelector(state => state.alert.alert);
 
     // *  To be able to execute the actions
     const dispatch = useDispatch();
@@ -13,6 +16,11 @@ const NewProduct = () => {
         e.preventDefault();
 
         if (name.trim() === "" || price <= 0) {
+            const alert = {
+                msg: "All fields are required",
+                classes: "alert alert-danger text-center text-uppercase p3",
+            };
+            dispatch(showAlertAction(alert));
             return;
         }
         // *! Can't use the action directly, you have to use the dispatch
@@ -27,6 +35,7 @@ const NewProduct = () => {
                         <h2 className="text-center-mb-4 font-weight-bold">
                             Add New Product
                         </h2>
+                        {alert && <p className={alert.classes}>{alert.msg}</p>}
                         <form onSubmit={handleSubmit}>
                             <div className="form-group">
                                 <label>Product Name</label>
