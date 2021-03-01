@@ -10,6 +10,8 @@ import {
     DOWNLOAD_PRODUCTS_ERROR,
     DOWNLOAD_PRODUCTS_SUCCESSFUL,
     GET_PRODUCT_TO_EDIT,
+    UPDATE_PRODUCT_ERROR,
+    UPDATE_PRODUCT_SUCCESSFUL,
 } from "../types";
 
 // Create new products
@@ -79,4 +81,19 @@ export const getProductToEditAction = product => dispatch => {
         type: GET_PRODUCT_TO_EDIT,
         payload: product,
     });
+};
+
+export const updateProduct = product => async dispatch => {
+    try {
+        const res = await axiosClient.put(`/${product.id}`, product);
+        dispatch({
+            type: UPDATE_PRODUCT_SUCCESSFUL,
+            payload: res.data,
+        });
+    } catch (error) {
+        dispatch({
+            type: UPDATE_PRODUCT_ERROR,
+            payload: true,
+        });
+    }
 };
