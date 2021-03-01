@@ -17,10 +17,10 @@ export const createNewProductAction = product => async dispatch => {
     });
 
     try {
-        await axiosClient.post("/", product);
+        const res = await axiosClient.post("/", product);
         dispatch({
             type: ADD_PRODUCT_SUCCESSFUL,
-            payload: product,
+            payload: res.data,
         });
         Swal.fire("Correct", "Product was successfully added", "success");
     } catch (error) {
