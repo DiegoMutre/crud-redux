@@ -9,6 +9,7 @@ import {
     DOWNLOAD_PRODUCTS,
     DOWNLOAD_PRODUCTS_ERROR,
     DOWNLOAD_PRODUCTS_SUCCESSFUL,
+    GET_PRODUCT_TO_EDIT,
 } from "../types";
 
 // Create new products
@@ -71,4 +72,11 @@ export const deleteProductAction = id => async dispatch => {
             payload: true,
         });
     }
+};
+
+export const getProductToEditAction = product => dispatch => {
+    dispatch({
+        type: GET_PRODUCT_TO_EDIT,
+        payload: product,
+    });
 };
