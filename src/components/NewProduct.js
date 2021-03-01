@@ -8,6 +8,7 @@ const NewProduct = () => {
     const [price, setPrice] = useState(0);
 
     const alert = useSelector(state => state.alert.alert);
+    const loading = useSelector(state => state.products.loading);
 
     // *  To be able to execute the actions
     const dispatch = useDispatch();
@@ -67,6 +68,7 @@ const NewProduct = () => {
                                 Add Product
                             </button>
                         </form>
+                        {loading && <p>Loading...</p>}
                     </div>
                 </div>
             </div>
