@@ -1,5 +1,7 @@
 import { useEffect, useState } from "react";
-import { useSelector } from "react-redux";
+import { useDispatch, useSelector } from "react-redux";
+import { useHistory } from "react-router-dom";
+import { updateProduct } from "../actions/productsActions";
 
 const EditProduct = () => {
     const [product, setProduct] = useState({
@@ -7,6 +9,9 @@ const EditProduct = () => {
         price: 0,
     });
     const productToEdit = useSelector(state => state.products.productToEdit);
+    const error = useSelector(state => state.products.error);
+    const dispatch = useDispatch();
+    const history = useHistory();
 
     useEffect(() => {
         if (productToEdit) {
@@ -23,6 +28,12 @@ const EditProduct = () => {
         });
     };
 
+    const handleSubmit = e => {
+        e.preventDefault();
+        dispatch(updateProduct(product));
+        history.push("/");
+    };
+
     return (
         <div className="row justify-content-center">
             <div className="col-md-8">
@@ -31,7 +42,7 @@ const EditProduct = () => {
                         <h2 className="text-center-mb-4 font-weight-bold">
                             Edit Product
                         </h2>
-                        <form>
+                        <form onSubmit={handleSubmit}>
                             <div className="form-group">
                                 <label>Product Name</label>
                                 <input
@@ -61,6 +72,11 @@ const EditProduct = () => {
                                 Save Changes
                             </button>
                         </form>
+                        {error && (
+                            <p className="font-weight-bold alert alert-danger text-center mt-4">
+                                There was an error
+                            </p>
+                        )}
                     </div>
                 </div>
             </div>
