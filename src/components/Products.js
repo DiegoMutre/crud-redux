@@ -11,7 +11,6 @@ const Products = () => {
 
     useEffect(() => {
         dispatch(getProductsAction());
-        console.log("LOOP");
     }, [dispatch]);
 
     return (
