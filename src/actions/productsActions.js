@@ -1,3 +1,4 @@
+import Swal from "sweetalert2";
 import { axiosClient } from "../config/axios";
 import {
     ADD_PRODUCT,
@@ -18,10 +19,16 @@ export const createNewProductAction = product => async dispatch => {
             type: ADD_PRODUCT_SUCCESSFUL,
             payload: product,
         });
+        Swal.fire("Correct", "Product was successfully added", "success");
     } catch (error) {
         dispatch({
             type: ADD_PRODUCT_ERROR,
             payload: true,
+        });
+        Swal.fire({
+            icon: "error",
+            title: "There was a mistake",
+            text: "There was a mistake, try again",
         });
     }
 };
