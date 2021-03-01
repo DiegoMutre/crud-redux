@@ -1,29 +1,74 @@
 {
-    "products": [
-      {
-        "id": 1,
-        "name": "Carrot Juice",
-        "price": "31111"
-      },
-      {
-        "id": 2,
-        "name": "Orange Juice",
-        "price": "10"
-      },
-      {
-        "id": 3,
-        "name": "Orange Juice",
-        "price": "300"
-      },
-      {
-        "id": 4,
-        "name": "Rib Eye 800g",
-        "price": "200"
-      },
-      {
-        "id": 5,
-        "name": "Strawberry Juice",
-        "price": "200"
-      }
-    ]
-  }
+  "products": [
+    {
+      "id": 2,
+      "name": "Orange Juice",
+      "price": "10"
+    },
+    {
+      "id": 3,
+      "name": "Orange Juice",
+      "price": "300"
+    },
+    {
+      "id": 4,
+      "name": "Rib Eye 800g",
+      "price": "200"
+    },
+    {
+      "id": 5,
+      "name": "Strawberry Juice",
+      "price": "200"
+    },
+    {
+      "name": "Jugo de Sandía",
+      "price": 10,
+      "id": 6
+    },
+    {
+      "name": "Jugo de Frutilla",
+      "price": 10,
+      "id": 7
+    },
+    {
+      "name": "Agua de Coco EDITADO",
+      "price": 10,
+      "id": 8
+    },
+    {
+      "name": "Jugo de Tamarindo EDITADO",
+      "price": 40,
+      "id": 9
+    },
+    {
+      "name": "Jugo de Limón con cerveza",
+      "price": 500,
+      "id": 10
+    },
+    {
+      "name": "Television LG",
+      "price": 670,
+      "id": 11
+    },
+    {
+      "name": "Toy car",
+      "price": 10,
+      "id": 12
+    },
+    {
+      "name": "Celular A10",
+      "price": 125,
+      "id": 13
+    },
+    {
+      "name": "Comida Mexicana",
+      "price": 10,
+      "id": 14
+    },
+    {
+      "name": "Ya no se que escribir",
+      "price": 40,
+      "id": 16
+    }
+  ]
+}
