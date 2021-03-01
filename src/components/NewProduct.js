@@ -1,6 +1,6 @@
 import { useState } from "react";
 import { useDispatch, useSelector } from "react-redux";
-import { showAlertAction } from "../actions/alertActions";
+import { hideAlertAction, showAlertAction } from "../actions/alertActions";
 import { createNewProductAction } from "../actions/productsActions";
 
 const NewProduct = () => {
@@ -23,6 +23,9 @@ const NewProduct = () => {
             dispatch(showAlertAction(alert));
             return;
         }
+
+        dispatch(hideAlertAction());
+
         // *! Can't use the action directly, you have to use the dispatch
         dispatch(createNewProductAction({ name, price }));
     };
