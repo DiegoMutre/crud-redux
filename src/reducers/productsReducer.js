@@ -1,4 +1,8 @@
-import { ADD_PRODUCT, ADD_PRODUCT_SUCCESSFUL } from "../types";
+import {
+    ADD_PRODUCT,
+    ADD_PRODUCT_ERROR,
+    ADD_PRODUCT_SUCCESSFUL,
+} from "../types";
 
 // Each reducer have their own state
 const initialState = {
@@ -18,6 +22,13 @@ function productsReducer(state = initialState, action) {
             return {
                 ...state,
                 products: [...state.products, action.payload],
+                loading: false,
+            };
+        case ADD_PRODUCT_ERROR:
+            return {
+                ...state,
+                loading: false,
+                error: action.payload,
             };
         default:
             return state;
