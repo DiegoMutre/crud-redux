@@ -4,6 +4,8 @@ import {
     ADD_PRODUCT,
     ADD_PRODUCT_ERROR,
     ADD_PRODUCT_SUCCESSFUL,
+    DELETE_PRODUCT_ERROR,
+    DELETE_PRODUCT_SUCCESSFUL,
     DOWNLOAD_PRODUCTS,
     DOWNLOAD_PRODUCTS_ERROR,
     DOWNLOAD_PRODUCTS_SUCCESSFUL,
@@ -51,6 +53,21 @@ export const getProductsAction = () => async dispatch => {
     } catch (error) {
         dispatch({
             type: DOWNLOAD_PRODUCTS_ERROR,
+            payload: true,
+        });
+    }
+};
+
+export const deleteProductAction = id => async dispatch => {
+    try {
+        await axiosClient.delete(`/${id}`);
+        dispatch({
+            type: DELETE_PRODUCT_SUCCESSFUL,
+            payload: id,
+        });
+    } catch (error) {
+        dispatch({
+            type: DELETE_PRODUCT_ERROR,
             payload: true,
         });
     }
