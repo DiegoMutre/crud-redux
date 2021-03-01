@@ -9,17 +9,14 @@ const NewProduct = () => {
     // *  To be able to execute the actions
     const dispatch = useDispatch();
 
-    // *! Can't use the action directly, you have to use the dispatch
-    const addProduct = product => dispatch(createNewProductAction(product));
-
     const handleSubmit = e => {
         e.preventDefault();
 
         if (name.trim() === "" || price <= 0) {
             return;
         }
-
-        addProduct({ name, price });
+        // *! Can't use the action directly, you have to use the dispatch
+        dispatch(createNewProductAction({ name, price }));
     };
 
     return (
