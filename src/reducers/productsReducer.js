@@ -7,6 +7,9 @@ import {
     DOWNLOAD_PRODUCTS,
     DOWNLOAD_PRODUCTS_ERROR,
     DOWNLOAD_PRODUCTS_SUCCESSFUL,
+    GET_PRODUCT_TO_EDIT,
+    UPDATE_PRODUCT_ERROR,
+    UPDATE_PRODUCT_SUCCESSFUL,
 } from "../types";
 
 // Each reducer have their own state
@@ -14,6 +17,7 @@ const initialState = {
     products: [],
     error: null,
     loading: false,
+    productToEdit: null,
 };
 
 function productsReducer(state = initialState, action) {
@@ -33,6 +37,7 @@ function productsReducer(state = initialState, action) {
         case ADD_PRODUCT_ERROR:
         case DOWNLOAD_PRODUCTS_ERROR:
         case DELETE_PRODUCT_ERROR:
+        case UPDATE_PRODUCT_ERROR:
             return {
                 ...state,
                 loading: false,
@@ -49,6 +54,18 @@ function productsReducer(state = initialState, action) {
                 ...state,
                 products: state.products.filter(
                     product => product.id !== action.payload
+                ),
+            };
+        case GET_PRODUCT_TO_EDIT:
+            return {
+                ...state,
+                productToEdit: action.payload,
+            };
+        case UPDATE_PRODUCT_SUCCESSFUL:
+            return {
+                ...state,
+                products: state.products.map(product =>
+                    product.id === action.payload.id ? action.payload : product
                 ),
             };
         default:
