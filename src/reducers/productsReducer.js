@@ -2,6 +2,8 @@ import {
     ADD_PRODUCT,
     ADD_PRODUCT_ERROR,
     ADD_PRODUCT_SUCCESSFUL,
+    DELETE_PRODUCT_ERROR,
+    DELETE_PRODUCT_SUCCESSFUL,
     DOWNLOAD_PRODUCTS,
     DOWNLOAD_PRODUCTS_ERROR,
     DOWNLOAD_PRODUCTS_SUCCESSFUL,
@@ -30,6 +32,7 @@ function productsReducer(state = initialState, action) {
             };
         case ADD_PRODUCT_ERROR:
         case DOWNLOAD_PRODUCTS_ERROR:
+        case DELETE_PRODUCT_ERROR:
             return {
                 ...state,
                 loading: false,
@@ -40,6 +43,13 @@ function productsReducer(state = initialState, action) {
                 ...state,
                 loading: false,
                 products: action.payload,
+            };
+        case DELETE_PRODUCT_SUCCESSFUL:
+            return {
+                ...state,
+                products: state.products.filter(
+                    product => product.id !== action.payload
+                ),
             };
         default:
             return state;
